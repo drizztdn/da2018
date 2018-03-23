@@ -99,3 +99,16 @@ pick a feature from a website and answer the following:
 
 ---
 # elementary data visualization
+1. barplots
+    * counts across variables
+1. piecharts
+    * easily see proportions
+1. histogram
+    * barchart grouped by ranges
+1. boxplots
+    * five number summary
+1. scatterplot
+    * show relationship between 2 variables
+
+---
+# lab excercises
