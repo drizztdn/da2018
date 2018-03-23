@@ -35,3 +35,10 @@
 * users in control of the decision
 * *softer side* of data products
 
+# assignment 1
+pick a feature from a website and answer the following:
+* the feature
+* the data
+* the outcome
+* the complexities
+* the validation
