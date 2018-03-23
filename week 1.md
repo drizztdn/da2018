@@ -35,10 +35,15 @@
 * users in control of the decision
 * *softer side* of data products
 
-# assignment 1
+# project 1
 pick a feature from a website and answer the following:
-* the feature
-* the data
-* the outcome
-* the complexities
-* the validation
+
+* part a
+    * the feature
+    * the data
+    * the outcome
+    * the complexities
+    * the validation
+* part b
+    * find and pick at least 5 datasets
+
