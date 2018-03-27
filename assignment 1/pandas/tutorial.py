@@ -3,15 +3,26 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 s = pd.Series([1,3,5,np.nan,6,8])
-print(s)
+#print(s)
 dates = pd.date_range('20130101', periods=6)
-print(dates)
+#print(dates)
 df = pd.DataFrame(np.random.randn(6,4), index=dates, columns=list('ABCD'))
-print(df)
+#print(df)
 df2 = pd.DataFrame({ 'A' : 1.,
                      'B' : pd.Timestamp('20130102'),
                      'C' : pd.Series(1,index=list(range(4)),dtype='float32'),
                      'D' : np.array([3] * 4,dtype='int32'),
                      'E' : pd.Categorical(["test","train","test","train"]),
                      'F' : 'foo' })
-print(df2)
+#print(df2)
+#print(df2.dtypes)
+#print(df.head())
+#print(df.tail(3))
+#print(df.describe())
+#print(df.T)
+#print(df.sort_index(axis=1, ascending=False))
+#print(df.sort_values(by='B'))
+
+ts = pd.Series(np.random.randn(1000), index=pd.date_range('1/1/2000', periods=1000))
+ts = ts.cumsum()
+ts.plot()
