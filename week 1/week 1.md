@@ -1,21 +1,23 @@
-# data products
+# Data Analytics - Week 1 - 3/21/18
+
+## data products
 * facilitate end-goal through use of data
 * doesn't present data to users
 * leverage data to provide actionable functionality
 
-# analytics
+## analytics
 * called Business Intelligence
 * creating summarizatiosn and trends
 
-# new analytics
+## new analytics
 * making recommendations
 * implementing recommendations, learn from outcomes, and then optimize
 * needs to happen real time instead of a batch process
 
-# data products
+## data products
 * guiding users to make a specific decision
 
-# challenges
+## challenges
 * **data quality**
 * **data quality**
 * **data quality**
@@ -25,18 +27,18 @@
     * how to adjust the outcome to the desired
 *  infrastructure
 
-# data quality
+## data quality
 * highly unstructured data
 
 
-# requirements
+## requirements
 * has to work in the context of the user
 * users comfotrable the way you are using the data
 * users in control of the decision
 * *softer side* of data products
 
 ---
-# project 1
+## project 1
 pick a feature from a website and answer the following:
 
 * part a
@@ -49,7 +51,7 @@ pick a feature from a website and answer the following:
     * find and pick at least 5 datasets
 
 ---
-# elementary statistics
+## elementary statistics
 1. variables - describe characterstics of an individual in a population
     * columns
     * numeric
@@ -98,7 +100,7 @@ pick a feature from a website and answer the following:
     * might have a bad sample, should it be ignored
 
 ---
-# elementary data visualization
+## elementary data visualization
 1. barplots
     * counts across variables
 1. piecharts
@@ -111,4 +113,4 @@ pick a feature from a website and answer the following:
     * show relationship between 2 variables
 
 ---
-# lab excercises
+## lab excercises
