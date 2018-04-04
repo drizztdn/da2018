@@ -9,9 +9,10 @@ name = "pypi"
 numpy = "*"
 pandas = "*"
 matplotlib = "*"
-#statsmodels = "*"
+statsmodels = "*"
 #scipy = "*"
 #scikit-learn = "*"
+kaggle = "1.1.0"
 
 [requires]
 python_version = "3.6.4"
