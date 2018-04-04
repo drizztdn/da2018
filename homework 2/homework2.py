@@ -11,24 +11,25 @@ pd.to_datetime(df['YEARMODA'],format="%Y%m%d")
 df = df[df["DEWP"] != 9999.9]
 df = df[df["SLP"] != 9999.9]
 
-print(df)
-
+#get sample set
 smpl = df.sample(100)
 
-print(smpl)
-
+#sample removed from original
 df2 = df.drop(smpl.index)
 
-print(df2)
-
+#
 res = sm.ols(formula = "TEMP ~ DEWP",data=df2).fit()
 print(res.summary())
 
-yp2 = res.predict(smpl['DEWP'])
+y2 = res.predict(smpl['DEWP'])
+
+print("rmse:",em.rmse(smpl['DEWP'], y2))
+
 
 plt.scatter(df2['TEMP'],df2['DEWP'],label="data")
 plt.scatter(smpl["TEMP"],smpl["DEWP"], color="purple",label="samples")
-plt.scatter(yp2,smpl["DEWP"], color="red",label = "predicted")
+plt.scatter(y2,smpl["DEWP"], color="red",label = "predicted")
+plt.plot(res.fittedvalues, df2['DEWP'],label="fitted", color="black")
 plt.legend()
 plt.xlabel('DEWP')
 plt.ylabel('TEMP')
