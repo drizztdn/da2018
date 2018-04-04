@@ -8,8 +8,12 @@ df = pd.read_csv("data.csv",index_col=False)
 pd.to_datetime(df['YEARMODA'],format="%Y%m%d")
 
 #cleaning up null values in data
+df = df[df["TEMP"] != 9999.9]
 df = df[df["DEWP"] != 9999.9]
 df = df[df["SLP"] != 9999.9]
+df = df[df["MAX"] != 9999.9]
+df = df[df["MIN"] != 9999.9]
+
 
 #get sample set
 smpl = df.sample(100)
@@ -33,4 +37,22 @@ plt.plot(res.fittedvalues, df2['DEWP'],label="fitted", color="black")
 plt.legend()
 plt.xlabel('DEWP')
 plt.ylabel('TEMP')
+plt.savefig('partA.png')
 plt.show()
+
+plt.boxplot(df['TEMP'])
+plt.savefig('temp.png')
+plt.show()
+plt.boxplot(df['DEWP'])
+plt.savefig('dewp.png')
+plt.show()
+plt.boxplot(df['SLP'])
+plt.savefig('slp.png')
+plt.show()
+plt.boxplot(df['MIN'])
+plt.savefig('min.png')
+plt.show()
+plt.boxplot(df['MAX'])
+plt.savefig('max.png')
+plt.show()
+
