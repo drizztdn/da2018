@@ -4,6 +4,9 @@ import matplotlib.pyplot as plt
 import statsmodels.formula.api as sm
 import statsmodels.tools.eval_measures as em
 
+def fx(x, y):
+    return em.rmse(x, y)
+
 df = pd.read_csv("data.csv",index_col=False)
 pd.to_datetime(df['YEARMODA'],format="%Y%m%d")
 
@@ -22,14 +25,33 @@ smpl = df.sample(100)
 #sample removed from original
 df2 = df.drop(smpl.index)
 
-#
+# run linear regression
 res = sm.ols(formula = "TEMP ~ DEWP",data=df2).fit()
 print(res.summary())
 
+# predict values based on extracted sample set
 y2 = res.predict(smpl['DEWP'])
+y2.to_csv('predicted.csv')
+y2.columns = ['pred_temp']
 
-print("rmse:",em.rmse(smpl['DEWP'], y2))
+# add prediction to sample set for comparison
+smpl['pred_temp'] = y2
 
+# remove columns not needed for this sample
+del smpl['SLP']
+del smpl['STP']
+del smpl['MAX']
+del smpl['MIN']
+del smpl['GUST']
+del smpl['FRSHTT']
+del smpl['VISIB']
+del smpl['WDSP']
+del smpl['MXSPD']
+del smpl['PRCP']
+del smpl['SNDP']
+smpl.to_csv('sample.csv')
+
+print("rmse:",em.rmse(smpl['TEMP'], smpl['pred_temp']))
 
 plt.scatter(df2['TEMP'],df2['DEWP'],label="data")
 plt.scatter(smpl["TEMP"],smpl["DEWP"], color="purple",label="samples")
