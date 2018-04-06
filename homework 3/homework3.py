@@ -19,19 +19,21 @@ def predict(trn, smpl):
     smpl['pred_dir'][smpl['pred'] > .5] = "Down"
     smpl['pred_dir'][smpl['pred'] <= .5] = "Up"
     smpl['pred_correct'] = smpl['pred_dir'] == smpl['Direction']
-    print(smpl.groupby('pred_correct')['pred'].count())
+    print("total pred correct: ",smpl.groupby('pred_correct')['pred'].count())
+    print("up correct: ",smpl['pred_correct'][smpl['Direction'] == 'Up'].describe())
+    print("down correct:", smpl['pred_correct'][smpl['Direction'] == 'Down'].describe())
     return smpl
 
 df=pd.read_csv("smarket.csv")
 trn = df.copy()
 
-print(df.describe())
+print(df.describe(include='all'))
+print(df.corr())
 
 sns.set(style="ticks", color_codes=True)
 g = sns.pairplot(df)
-g.savefig('pairwise.png')
-
-print(df.corr())
+#g.savefig('pairwise.png')
+#plt.show()
 
 rgs = train(df)
 
