@@ -7,11 +7,13 @@ import seaborn as sns;
 
 pd.options.mode.chained_assignment = None
 
-def predict(trn, smpl):
+def train(df):
     res = sm.glm(formula="Direction ~ Lag1+Lag2+Lag3+Lag4+Lag5",data=trn,family=sma.families.Binomial()).fit()
     print(res.summary())
+    return res
 
-    ypnew = res.predict(smpl)
+def predict(trn, smpl):
+    ypnew = trn.predict(smpl)
     smpl['pred'] = ypnew
     smpl['pred_dir'] = ''
     smpl['pred_correct'] = False
@@ -33,10 +35,13 @@ if __name__ == "__main__":
     g.savefig('pairwise.png')
 
     print(df.corr())
+    
+    rgs = train(df)
 
-    df = predict(df, df)
+    df = predict(rgs, df)
 
     smpl = trn[trn["Year"] == 2005]
     trn = trn.drop(smpl.index)
 
-    smpl = predict(trn, smpl)
+    rgs2 = train(trn)
+    smpl = predict(rgs2, smpl)
