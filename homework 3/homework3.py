@@ -5,29 +5,51 @@ import statsmodels.formula.api as sm
 import statsmodels.api as sma
 import seaborn as sns; 
 
+def fx(x):
+    if x:
+        return 'Down'
+    else:
+        return 'Up'
+
 df=pd.read_csv("smarket.csv")
+trn = df.copy()
 
 print(df.describe())
 
 
 sns.set(style="ticks", color_codes=True)
-#g = sns.pairplot(df)
-#plt.show()
+g = sns.pairplot(df)
+g.savefig('pairwise.png')
 
 print(df.corr())
 
-df['DirectionUp'] = df['Direction'].map({'Up': 1, 'Down': 0})
-
-res = sm.glm(formula="DirectionUp ~ Lag1+Lag2+Lag3+Lag4+Lag5",data=df,family=sma.families.Binomial()).fit()
+res = sm.glm(formula="Direction ~ Lag1+Lag2+Lag3+Lag4+Lag5",data=df,family=sma.families.Binomial()).fit()
 print(res.summary())
 
 ypnew = res.predict(df)
-ypnew['']
+df['pred'] = ypnew
+df['pred_dir'] = ''
+df['pred_correct'] = False
+df['pred_dir'][df['pred'] > .5] = "Down"
+df['pred_dir'][df['pred'] <= .5] = "Up"
+df['pred_correct'] = df['pred_dir'] == df['Direction']
+#print(df)
 
-smpl = df[df["Year"] == 2005]
-trn = df.drop(smpl.index)
+print(df.groupby('pred_correct')['pred'].count())
 
-res2 = sm.glm(formula="DirectionUp ~ Lag1+Lag2+Lag3+Lag4+Lag5",data=trn,family=sma.families.Binomial()).fit()
+smpl = trn[trn["Year"] == 2005]
+trn = trn.drop(smpl.index)
+
+res2 = sm.glm(formula="Direction ~ Lag1+Lag2+Lag3+Lag4+Lag5",data=trn,family=sma.families.Binomial()).fit()
 yp2new = res2.predict(smpl)
+
+smpl['pred'] = yp2new
+smpl['pred_dir'] = ''
+smpl['pred_correct'] = False
+smpl['pred_dir'][smpl['pred'] > .5] = "Down"
+smpl['pred_dir'][smpl['pred'] <= .5] = "Up"
+smpl['pred_correct'] = smpl['pred_dir'] == smpl['Direction']
+
+print(smpl.groupby('pred_correct')['pred'].count())
 
 #print(yp2new)
