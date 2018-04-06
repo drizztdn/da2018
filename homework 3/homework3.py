@@ -5,6 +5,8 @@ import statsmodels.formula.api as sm
 import statsmodels.api as sma
 import seaborn as sns; 
 
+pd.options.mode.chained_assignment = None
+
 def fx(x):
     if x:
         return 'Down'
