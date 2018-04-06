@@ -13,6 +13,7 @@ statsmodels = "*"
 #scipy = "*"
 #scikit-learn = "*"
 kaggle = "1.1.0"
+appjar = "*"
 
 [requires]
 python_version = "3.6.4"
