@@ -29,8 +29,12 @@ no_interactions, interactions  = test_interactions("cats.csv",'Hwt',['Bwt', 'Sex
 tc = pd.DataFrame(columns=['Bwt','Sex'])
 tc.loc[0] = [3.4, 'F']
 outcome = interactions.predict(tc)
-print("sigma's heart weight: " + str(outcome[0]))
+outcome1 = no_interactions.predict(tc)
+print("interactions - sigma's heart weight: " + str(outcome[0]))
+print("no interactions - sigma's heart weight: " + str(outcome1[0]))
 print()
+
+
 print('Part B')
 no_interactions, interactions  = test_interactions("trees.csv",'Volume',['Girth', 'Height'])
 
