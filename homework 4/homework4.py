@@ -42,7 +42,9 @@ no_interactions, interactions  = test_interactions("trees.csv",'Volume',['np.log
 
 print()
 print('Part C')
+print('without weight')
 no_interactions, part_int  = test_interactions("mtcars.csv",'mpg',['hp', 'cyl'])
+print('with weight')
 no_interactions, interactions  = test_interactions("mtcars.csv",'mpg',['hp', 'cyl','wt'])
 
 no_interactions, interactions  = test_interactions("mtcars.csv",'mpg',['hp', 'cyl'],[['cyl','str']])
@@ -51,12 +53,15 @@ tc = pd.DataFrame(columns=['hp','cyl','wt'])
 tc.loc[0] = [100,4,2.1]
 tc.loc[1] = [210,8,3.9]
 tc.loc[2] = [200,6,2.9]
+print(tc)
 outcome = part_int.predict(tc)
 print(outcome)
 
 print()
 print('Part D')
 d = pd.read_csv("diabetes.csv")
+print(d)
+d = d.dropna(subset=['chol'])
 d = d.dropna(subset=['age'])
 d = d.dropna(subset=['gender'])
 d = d.dropna(subset=['height'])
@@ -65,6 +70,8 @@ d = d.dropna(subset=['frame'])
 d = d.dropna(subset=['waist'])
 d = d.dropna(subset=['hip'])
 d = d.dropna(subset=['location'])
+
+print(d)
 
 diaNull = sm.ols(formula="chol ~ 1",data=d).fit()
 diaFull = sm.ols(formula="chol ~ age*gender*height*frame+waist*height*hip+location",data=d).fit()
