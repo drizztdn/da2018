@@ -23,6 +23,7 @@ def forward_selected(data, response, remaining, prev=[]):
         scores_with_candidates = []
         sel = starting_formula.format(response=response, selected='*'.join(selected), prev=previous)
         sel_model = sm.ols(sel, data).fit()
+        print("testing base: {}".format(sel))
         if previous == "1" or previous == "":
             previous = ""
         else:
@@ -31,6 +32,7 @@ def forward_selected(data, response, remaining, prev=[]):
         for candidate in remaining:
             formula = starting_formula.format(response=response, selected='*'.join(selected + [candidate]), prev=previous)
             model = sm.ols(formula, data).fit()
+            print("testing addition: {}".format(formula))
             prf = sma.stats.anova_lm(sel_model,model)['Pr(>F)'].loc[1]
             scores_with_candidates.append((prf, candidate))
         scores_with_candidates.sort()
@@ -50,8 +52,7 @@ d = pd.read_csv("DA_Clean NCSA Reserves_4.14.18-FINAL.csv")
 d['ReleaseMonth'] = d['ReleaseMonth'].astype('str')
 d['ReleaseYear'] = d['ReleaseYear'].astype('str')
 
-result, f, selected = forward_selected(d,'ReservesLevel',['Edition', 'Channel', 'Platform', 'GameType',
-                        'ReleaseMonth','ReleaseYear','RelativeWeek'])
+result, f, selected = forward_selected(d,'ReservesLevel',['Region','Channel','Edition','Platform','ReleaseYear','ReleaseMonth','RelativeWeek','GameType'])
 
 print(f)
 print(selected)
