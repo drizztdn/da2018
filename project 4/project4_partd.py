@@ -36,6 +36,7 @@ def backward_selected(data, response, remaining, prev=[]):
             model = sm.ols(formula, data).fit()
             print("testing removal: {}".format(formula))
             prf = sma.stats.anova_lm(model,sel_model)['Pr(>F)'].loc[1]
+            print("testing removal: {} result: {}".format(formula, prf))
             scores_with_candidates.append((prf, candidate))
         scores_with_candidates.sort()
         best_new_score, best_candidate = scores_with_candidates.pop()

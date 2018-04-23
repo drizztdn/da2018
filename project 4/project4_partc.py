@@ -34,6 +34,7 @@ def forward_selected(data, response, remaining, prev=[]):
             model = sm.ols(formula, data).fit()
             print("testing addition: {}".format(formula))
             prf = sma.stats.anova_lm(sel_model,model)['Pr(>F)'].loc[1]
+            print("testing addition: {} result: {}".format(formula, prf))
             scores_with_candidates.append((prf, candidate))
         scores_with_candidates.sort()
         best_new_score, best_candidate = scores_with_candidates.pop(0)
