@@ -38,3 +38,6 @@ df = clean(pd.read_csv("DA_Clean NCSA Reserves_4.14.18-FINAL.csv"))
 
 no_inter, inter = test_interactions(df, 'ReservesLevel', ['Edition', 'Channel', 'Platform', 'GameType',
                         'ReleaseMonth'], [['ReleaseMonth', 'str'], ['ReleaseYear', 'str']])
+
+f = open('interactions.txt','w')
+print(inter.summary(), file=f)
