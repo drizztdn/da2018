@@ -26,6 +26,7 @@ def backward_selected(data, response, remaining, prev=[]):
         scores_with_candidates = []
         sel = starting_formula.format(response=response, selected='*'.join(remain), prev=previous)
         sel_model = sm.ols(sel, data).fit()
+        print("testing base: {}".format(sel))
         for candidate in remain:
             s = remain[:]
             s.remove(candidate)
@@ -33,6 +34,7 @@ def backward_selected(data, response, remaining, prev=[]):
                 previous = previous[:-1]
             formula = starting_formula.format(response=response, selected='*'.join(s), prev=previous)
             model = sm.ols(formula, data).fit()
+            print("testing removal: {}".format(formula))
             prf = sma.stats.anova_lm(model,sel_model)['Pr(>F)'].loc[1]
             scores_with_candidates.append((prf, candidate))
         scores_with_candidates.sort()
