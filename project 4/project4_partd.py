@@ -75,7 +75,7 @@ d = pd.read_csv("DA_Clean NCSA Reserves_4.14.18-FINAL.csv")
 d['ReleaseMonth'] = d['ReleaseMonth'].astype('str')
 d['ReleaseYear'] = d['ReleaseYear'].astype('str')
 
-result, f, selected = backward_selected(d,'ReservesLevel',['Platform','Region','ReleaseMonth','Channel','Edition','RelativeWeek','GameType'])
+result, f, selected = backward_selected(d,'ReservesLevel',['Platform','Region','ReleaseMonth','Channel','Edition','RelativeWeek'])
 
 print(f)
 print(selected)

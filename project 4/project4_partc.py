@@ -72,7 +72,7 @@ d['ReleaseMonth'] = d['ReleaseMonth'].astype('str')
 d['ReleaseYear'] = d['ReleaseYear'].astype('str')
 
 result, f, selected = forward_selected(d,'ReservesLevel',['Platform', 'Region', 'ReleaseMonth', 'Channel', 'Edition', 'RelativeWeek', 'GameType'])
-# result, f, selected = forward_selected(d,'ReservesLevel',['RelativeWeek','GameType','ReleaseYear'], [['Platform','Region','ReleaseMonth','Channel','Edition']])
+#result, f, selected = forward_selected(d,'ReservesLevel',['RelativeWeek','GameType'], [['Platform','Region','ReleaseMonth','Channel','Edition']])
 
 print(f)
 print(selected)
