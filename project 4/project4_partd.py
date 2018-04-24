@@ -1,6 +1,7 @@
 import pandas as pd
 import statsmodels.formula.api as sm
 import statsmodels.api as sma
+from pathlib import Path
 
 def backward_selected(data, response, remaining, prev=[]):
     """
@@ -11,14 +12,14 @@ def backward_selected(data, response, remaining, prev=[]):
     prv = []
     best_formula = ''
     current_score, best_new_score = 0.05, 0.05
-    starting_formula = "{response} ~ {prev}{selected}"
+    starting_formula = "{response} ~ {selected}"
 
     for i in range(0,len(prev)):
         prv.append("*".join(prev[i]))
     if len(prv) > 0:
-        previous = "+".join(prv)
+        previous = "*".join(prv)
         if len(previous) > 1:
-            previous = previous + '+'
+            previous = previous + '*'
     else:
         previous = '1'
 
@@ -26,18 +27,28 @@ def backward_selected(data, response, remaining, prev=[]):
         current_score = 0.05
         scores_with_candidates = []
         sel = starting_formula.format(response=response, selected='*'.join(remain), prev=previous)
-        if sel == best_formula:
-            sel_model = best_model
+        s_file = "b_models/" + sel.replace(" ", "_") + '.pickle'
+        if Path(s_file).exists():
+            sel_model = sma.load(s_file)
         else:
-            sel_model = sm.ols(sel, data).fit()
+            if sel == best_formula:
+                sel_model = best_model
+            else:
+                sel_model = sm.ols(sel, data).fit()
+                sel_model.save(s_file)
         print("testing base: {}".format(sel))
         for candidate in remain:
             s = remain[:]
             s.remove(candidate)
-            if len(s) == 0 and previous.endswith('+'):
+            if len(s) == 0 and previous.endswith('*'):
                 previous = previous[:-1]
             formula = starting_formula.format(response=response, selected='*'.join(s), prev=previous)
-            model = sm.ols(formula, data).fit()
+            f_file = "b_models/" + formula.replace(" ", "_") + '.pickle'
+            if Path(f_file).exists():
+                model = sma.load(f_file)
+            else:
+                model = sm.ols(formula, data).fit()
+                model.save(f_file)
             print("testing removal: {}".format(formula))
             prf = sma.stats.anova_lm(model,sel_model)['Pr(>F)'].loc[1]
             print("testing removal: {} result: {}".format(formula, prf))
@@ -49,7 +60,7 @@ def backward_selected(data, response, remaining, prev=[]):
             selected.append(best_candidate)
             current_score = best_new_score
             best_model.save('best_model_backward.pickle')
-    if previous[:1] != "+" and len(selected) == 0:
+    if previous[:1] != "*" and len(selected) == 0:
         previous = previous[:-1]
     for s in selected:
         remaining.remove(s)
@@ -62,7 +73,7 @@ d = pd.read_csv("DA_Clean NCSA Reserves_4.14.18-FINAL.csv")
 d['ReleaseMonth'] = d['ReleaseMonth'].astype('str')
 d['ReleaseYear'] = d['ReleaseYear'].astype('str')
 
-result, f, selected = backward_selected(d,'ReservesLevel',['Region','Channel','Edition','Platform','ReleaseYear','ReleaseMonth','RelativeWeek','GameType'])
+result, f, selected = backward_selected(d,'ReservesLevel',['Platform','Region','ReleaseMonth','Channel','Edition','RelativeWeek','GameType'])
 
 print(f)
 print(selected)
