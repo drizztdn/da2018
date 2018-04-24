@@ -25,6 +25,7 @@ def forward_selected(data, response, remaining, prev=[]):
         scores_with_candidates = []
         sel = starting_formula.format(response=response, selected='*'.join(selected), prev=previous)
         s_file = "models/"+sel.replace(response+" ~ ","")+'.pickle'
+        s_file = s_file.replace('*', '')
         if Path(s_file).exists():
             sel_model = sma.load(s_file)
         else:
@@ -42,6 +43,7 @@ def forward_selected(data, response, remaining, prev=[]):
         for candidate in remaining:
             formula = starting_formula.format(response=response, selected='*'.join(selected + [candidate]), prev=previous)
             f_file = "models/"+formula.replace(response+" ~ ","")+'.pickle'
+            f_file = f_file.replace('*','')
             if Path(f_file).exists():
                 model = sma.load(f_file)
             else:
@@ -69,7 +71,7 @@ d = pd.read_csv("DA_Clean NCSA Reserves_4.14.18-FINAL.csv")
 d['ReleaseMonth'] = d['ReleaseMonth'].astype('str')
 d['ReleaseYear'] = d['ReleaseYear'].astype('str')
 
-result, f, selected = forward_selected(d,'ReservesLevel',['Platform', 'Region', 'ReleaseMonth', 'Channel', 'Edition', 'RelativeWeek', 'GameType', 'ReleaseYear'])
+result, f, selected = forward_selected(d,'ReservesLevel',['Platform', 'Region', 'ReleaseMonth', 'Channel', 'Edition', 'RelativeWeek', 'GameType'])
 # result, f, selected = forward_selected(d,'ReservesLevel',['RelativeWeek','GameType','ReleaseYear'], [['Platform','Region','ReleaseMonth','Channel','Edition']])
 
 print(f)
