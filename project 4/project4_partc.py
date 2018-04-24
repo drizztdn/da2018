@@ -59,11 +59,11 @@ def forward_selected(data, response, remaining, prev=[]):
             remaining.remove(best_candidate)
             selected.append(best_candidate)
             current_score = best_new_score
-            best_model.save('best_model.pickle')
     if previous[:1] != "*" and len(selected) == 0:
         previous = previous[:-1]
     formula = starting_formula.format(response=response, selected='*'.join(selected), prev=previous)
     model = sm.ols(formula, data).fit()
+    model.save('best_model.pickle')
     return model, formula, selected
 
 
