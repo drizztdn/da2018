@@ -27,7 +27,8 @@ def backward_selected(data, response, remaining, prev=[]):
         current_score = 0.05
         scores_with_candidates = []
         sel = starting_formula.format(response=response, selected='*'.join(remain), prev=previous)
-        s_file = "b_models/" + sel.replace(" ", "_") + '.pickle'
+        s_file = "b_models/" + sel.replace(response + " ~ ", "") + '.pickle'
+        s_file = s_file.replace('*', '')
         if Path(s_file).exists():
             sel_model = sma.load(s_file)
         else:
@@ -43,7 +44,8 @@ def backward_selected(data, response, remaining, prev=[]):
             if len(s) == 0 and previous.endswith('*'):
                 previous = previous[:-1]
             formula = starting_formula.format(response=response, selected='*'.join(s), prev=previous)
-            f_file = "b_models/" + formula.replace(" ", "_") + '.pickle'
+            f_file = "b_models/" + formula.replace(response + " ~ ", "") + '.pickle'
+            f_file = f_file.replace('*', '')
             if Path(f_file).exists():
                 model = sma.load(f_file)
             else:
