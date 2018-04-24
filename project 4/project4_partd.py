@@ -9,6 +9,7 @@ def backward_selected(data, response, remaining, prev=[]):
     remain = remaining[:]
     selected = []
     prv = []
+    best_formula = ''
     current_score, best_new_score = 0.05, 0.05
     starting_formula = "{response} ~ {prev}{selected}"
 
@@ -25,7 +26,10 @@ def backward_selected(data, response, remaining, prev=[]):
         current_score = 0.05
         scores_with_candidates = []
         sel = starting_formula.format(response=response, selected='*'.join(remain), prev=previous)
-        sel_model = sm.ols(sel, data).fit()
+        if sel == best_formula:
+            sel_model = best_model
+        else:
+            sel_model = sm.ols(sel, data).fit()
         print("testing base: {}".format(sel))
         for candidate in remain:
             s = remain[:]
@@ -37,13 +41,14 @@ def backward_selected(data, response, remaining, prev=[]):
             print("testing removal: {}".format(formula))
             prf = sma.stats.anova_lm(model,sel_model)['Pr(>F)'].loc[1]
             print("testing removal: {} result: {}".format(formula, prf))
-            scores_with_candidates.append((prf, candidate))
+            scores_with_candidates.append((prf, candidate, model, formula))
         scores_with_candidates.sort()
-        best_new_score, best_candidate = scores_with_candidates.pop()
+        best_new_score, best_candidate, best_model, best_formula = scores_with_candidates.pop()
         if current_score < best_new_score:
             remain.remove(best_candidate)
             selected.append(best_candidate)
             current_score = best_new_score
+            best_model.save('best_model_backward.pickle')
     if previous[:1] != "+" and len(selected) == 0:
         previous = previous[:-1]
     for s in selected:
