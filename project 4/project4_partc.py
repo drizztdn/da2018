@@ -1,6 +1,7 @@
 import pandas as pd
 import statsmodels.formula.api as sm
 import statsmodels.api as sma
+from pathlib import Path
 
 def forward_selected(data, response, remaining, prev=[]):
     """
@@ -23,10 +24,15 @@ def forward_selected(data, response, remaining, prev=[]):
         current_score = 0.05
         scores_with_candidates = []
         sel = starting_formula.format(response=response, selected='*'.join(selected), prev=previous)
-        if sel == best_formula:
-            sel_model = best_model
+        s_file = "models/"+sel.replace(" ","_")+'.pickle'
+        if Path(s_file).exists():
+            sel_model = sma.load(s_file)
         else:
-            sel_model = sm.ols(sel, data).fit()
+            if sel == best_formula:
+                sel_model = best_model
+            else:
+                sel_model = sm.ols(sel, data).fit()
+                sel_model.save(s_file)
         print("testing base: {}".format(sel))
         if previous == "1" or previous == "":
             previous = ""
@@ -35,7 +41,12 @@ def forward_selected(data, response, remaining, prev=[]):
                 previous = previous+"*"
         for candidate in remaining:
             formula = starting_formula.format(response=response, selected='*'.join(selected + [candidate]), prev=previous)
-            model = sm.ols(formula, data).fit()
+            f_file = "models/"+formula.replace(" ", "_") + '.pickle'
+            if Path(f_file).exists():
+                model = sma.load(f_file)
+            else:
+                model = sm.ols(formula, data).fit()
+                model.save(f_file)
             print("testing addition: {}".format(formula))
             prf = sma.stats.anova_lm(sel_model,model)['Pr(>F)'].loc[1]
             print("testing addition: {} result: {}".format(formula, prf))
