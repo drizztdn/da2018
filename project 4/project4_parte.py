@@ -21,9 +21,10 @@ def loocv(d, formula, output):
         a_train, a_test = cross_val.split(train_index,test_index,d)
         d_train = pd.DataFrame(a_train,columns=d.columns)
         d_test = pd.DataFrame(a_test,columns=d.columns)
-        for x in d.columns:
-            d_train[x] = d_train[x].astype(d[x].dtypes.name)
-            d_test[x] = d_test[x].astype(d[x].dtypes.name)
+        d_train['ReleaseMonth'] = d_train['ReleaseMonth'].astype('str')
+        d_train['ReleaseYear'] = d_train['ReleaseYear'].astype('str')
+        d_test['ReleaseMonth'] = d_test['ReleaseMonth'].astype('str')
+        d_test['ReleaseYear'] = d_test['ReleaseYear'].astype('str')
         nuc = sm.ols(formula, data=d_train).fit()
         y = nuc.predict(d_test)
         error_sum+= (y[0] - d_test[output][0])**2
@@ -40,9 +41,10 @@ def kFold(d, formula, output, size):
         a_train, a_test = cross_val.split(train_index,test_index,d)
         d_train = pd.DataFrame(a_train,columns=d.columns)
         d_test = pd.DataFrame(a_test,columns=d.columns)
-        for x in d.columns:
-            d_train[x] = d_train[x].astype(d[x].dtypes.name)
-            d_test[x] = d_test[x].astype(d[x].dtypes.name)
+        d_train['ReleaseMonth'] = d_train['ReleaseMonth'].astype('str')
+        d_train['ReleaseYear'] = d_train['ReleaseYear'].astype('str')
+        d_test['ReleaseMonth'] = d_test['ReleaseMonth'].astype('str')
+        d_test['ReleaseYear'] = d_test['ReleaseYear'].astype('str')
         nuc = sm.ols(formula, data=d_train).fit()
         y = nuc.predict(d_test)
         error_sum+= ((y - d_test[output])**2).sum()/len(d_test.index)
