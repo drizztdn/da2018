@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import statsmodels.formula.api as sm
 import statsmodels.api as sma
 import statsmodels.sandbox.tools.cross_val as cross_val
