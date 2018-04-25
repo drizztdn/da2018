@@ -42,7 +42,6 @@ def loocv(d, formula, output):
 def kFold(d, formula, output, size):
     print('processing kFold: ' + str(size))
     loo = cross_val.KFold(len(d.index),size)
-    print(loo.__sizeof__())
     error_sum = 0
     for train_index, test_index in loo:
         print('starting')
@@ -64,7 +63,7 @@ def kFold(d, formula, output, size):
         nuc = sm.ols(formula, data=d_train).fit()
         y = nuc.predict(d_test)
         error_sum+= ((y - d_test[output])**2).sum()/len(d_test.index)
-    print("k-Fold " + size +" MSE= ", (error_sum/size))
+    print("k-Fold " + str(size) +" MSE= ", (error_sum/size))
 
 
 # loocv(d, formula, output)
