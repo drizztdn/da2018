@@ -16,11 +16,11 @@ def loocv(d, formula, output):
     print('processing loocv')
     loo = cross_val.LeaveOneOut(len(d.index))
     error_sum = 0
-
     for train_index, test_index in loo:
-        a_train, a_test = cross_val.split(train_index,test_index,d)
-        d_train = pd.DataFrame(a_train,columns=d.columns)
-        d_test = pd.DataFrame(a_test,columns=d.columns)
+        # print ("TRAIN:", train_index, "TEST:", test_index)
+        a_train, a_test = cross_val.split(train_index, test_index, d)
+        d_train = pd.DataFrame(a_train, columns=d.columns)
+        d_test = pd.DataFrame(a_test, columns=d.columns)
         d_train['ReleaseMonth'] = d_test['ReleaseMonth'].astype('str')
         d_train['Region'] = d_test['Region'].astype('str')
         d_train['Platform'] = d_test['Platform'].astype('str')
@@ -35,8 +35,8 @@ def loocv(d, formula, output):
         d_test['RelativeWeek'] = d_test['RelativeWeek'].astype('int')
         nuc = sm.ols(formula, data=d_train).fit()
         y = nuc.predict(d_test)
-        error_sum+= (y[0] - d_test[output][0])**2
-    print("LOOCV MSE= ", (error_sum/len(d.index)))
+        error_sum += (y[0] - d_test[output][0]) ** 2
+    print("MSE= ", (error_sum / len(d.index)))
 
 
 def kFold(d, formula, output, size):
