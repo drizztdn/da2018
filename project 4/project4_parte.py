@@ -4,6 +4,7 @@ import statsmodels.api as sma
 import statsmodels.sandbox.tools.cross_val as cross_val
 
 d = pd.read_csv("DA_Clean NCSA Reserves_4.14.18-FINAL.csv")
+d = d.reindex(np.random.permutation(d.index))
 d['ReleaseMonth'] = d['ReleaseMonth'].astype('str')
 d['ReleaseYear'] = d['ReleaseYear'].astype('str')
 
