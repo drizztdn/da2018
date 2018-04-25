@@ -66,6 +66,6 @@ def kFold(d, formula, output, size):
     print("k-Fold " + str(size) +" MSE= ", (error_sum/size))
 
 
-# loocv(d, formula, output)
+loocv(d, formula, output)
 kFold(d, formula, output, 5)
 kFold(d, formula, output, 10)
