@@ -3,7 +3,9 @@ import numpy as np
 import statsmodels.formula.api as sm
 import statsmodels.api as sma
 import statsmodels.sandbox.tools.cross_val as cross_val
+import datetime
 
+print(datetime.datetime.now())
 d = pd.read_csv("DA_Clean NCSA Reserves_4.14.18-FINAL.csv")
 d = d.reindex(np.random.permutation(d.index))
 d['ReleaseMonth'] = d['ReleaseMonth'].astype('str')
@@ -64,3 +66,4 @@ def kFold(d, formula, output, size):
 loocv(d, formula, output)
 # kFold(d, formula, output, 5)
 # kFold(d, formula, output, 10)
+print(datetime.datetime.now())
