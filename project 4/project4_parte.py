@@ -13,11 +13,11 @@ output = "ReservesLevel"
 # model = sma.load('best_model.pickle')
 
 def loocv(d, formula, output):
+    print('processing loocv')
     loo = cross_val.LeaveOneOut(len(d.index))
     error_sum = 0
 
     for train_index, test_index in loo:
-        print("TRAIN:", train_index, "TEST:", test_index)
         a_train, a_test = cross_val.split(train_index,test_index,d)
         d_train = pd.DataFrame(a_train,columns=d.columns)
         d_test = pd.DataFrame(a_test,columns=d.columns)
@@ -31,10 +31,10 @@ def loocv(d, formula, output):
 
 
 def kFold(d, formula, output, size):
+    print('processing kFold: ' + size)
     loo = cross_val.KFold(len(d.index),size)
     error_sum = 0
     for train_index, test_index in loo:
-        print ("TRAIN:", train_index, "TEST:", test_index)
         a_train, a_test = cross_val.split(train_index,test_index,d)
         d_train = pd.DataFrame(a_train,columns=d.columns)
         d_test = pd.DataFrame(a_test,columns=d.columns)
@@ -46,6 +46,7 @@ def kFold(d, formula, output, size):
         error_sum+= ((y - d_test[output])**2).sum()/len(d_test.index)
     print("k-Fold " + size +" MSE= ", (error_sum/size))
 
-loocv(d, formula, output)
+
+# loocv(d, formula, output)
 kFold(d, formula, output, 5)
 kFold(d, formula, output, 10)
