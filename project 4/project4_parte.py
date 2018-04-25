@@ -33,8 +33,10 @@ def loocv(d, formula, output):
 def kFold(d, formula, output, size):
     print('processing kFold: ' + str(size))
     loo = cross_val.KFold(len(d.index),size)
+    print(len(loo))
     error_sum = 0
     for train_index, test_index in loo:
+        print('starting')
         a_train, a_test = cross_val.split(train_index,test_index,d)
         d_train = pd.DataFrame(a_train,columns=d.columns)
         d_test = pd.DataFrame(a_test,columns=d.columns)
