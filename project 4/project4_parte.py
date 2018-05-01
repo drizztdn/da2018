@@ -6,12 +6,12 @@ import statsmodels.sandbox.tools.cross_val as cross_val
 import datetime
 
 print(datetime.datetime.now())
-d = pd.read_csv("DA_Clean NCSA Reserves_4.14.18-FINAL.csv")
+d = pd.read_csv("cleaned.csv")
 d = d.reindex(np.random.permutation(d.index))
 d['ReleaseMonth'] = d['ReleaseMonth'].astype('str')
 d['ReleaseYear'] = d['ReleaseYear'].astype('str')
 
-formula = "ReservesLevel ~ Platform*Region*ReleaseMonth*Channel*Edition*RelativeWeek"
+formula = "ReservesLevel ~ Platform*ReleaseMonth"
 output = "ReservesLevel"
 
 # model = sma.load('best_model.pickle')
@@ -31,7 +31,7 @@ def loocv(d, formula, output):
         nuc = sm.ols(formula, data=d_train).fit()
         y = nuc.predict(d_test)
         error_sum += (y[0] - d_test['ReservesLevel'][0]) ** 2
-    print("MSE= ", (error_sum / len(d.index)))
+    print("loocv MSE= ", (error_sum / len(d.index)))
 
 
 def kFold(d, formula, output, size):
@@ -46,10 +46,10 @@ def kFold(d, formula, output, size):
         for x in d.columns:
             d_train[x] = d_train[x].astype(d[x].dtypes.name)
             d_test[x] = d_test[x].astype(d[x].dtypes.name)
-        nuc = sm.ols('ReservesLevel ~ Platform*Region*ReleaseMonth*Channel*Edition*RelativeWeek', data=d_train).fit()
+        nuc = sm.ols('ReservesLevel ~ Platform*ReleaseMonth', data=d_train).fit()
         y = nuc.predict(d_test)
         error_sum += ((y - d_test['ReservesLevel']) ** 2).sum() / len(d_test.index)
-    print("MSE= ", (error_sum / size))
+    print("k-Fold {} MSE= {}".format(size,(error_sum / size)))
 
 loocv(d, formula, output)
 print(datetime.datetime.now())

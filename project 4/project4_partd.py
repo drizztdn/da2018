@@ -3,6 +3,8 @@ import statsmodels.formula.api as sm
 import statsmodels.api as sma
 from pathlib import Path
 
+file = open('backward_output.txt','w')
+
 def backward_selected(data, response, remaining, prev=[]):
     """
         based upon algorithm found at: https://planspace.org/20150423-forward_selection_with_statsmodels/
@@ -71,11 +73,11 @@ def backward_selected(data, response, remaining, prev=[]):
     return model, formula, remaining
 
 
-d = pd.read_csv("DA_Clean NCSA Reserves_4.14.18-FINAL.csv")
+d = pd.read_csv("cleaned.csv")
 d['ReleaseMonth'] = d['ReleaseMonth'].astype('str')
 d['ReleaseYear'] = d['ReleaseYear'].astype('str')
 
-result, f, selected = backward_selected(d,'ReservesLevel',['Platform','Region','ReleaseMonth','Channel','Edition','RelativeWeek'])
+result, f, selected = backward_selected(d,'ReservesLevel',['Channel','Edition','Platform','ReleaseYear','ReleaseMonth','RelativeWeek','GameType'])
 
 print(f)
 print(selected)

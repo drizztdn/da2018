@@ -3,6 +3,8 @@ import statsmodels.formula.api as sm
 import statsmodels.api as sma
 from pathlib import Path
 
+file = open('forward_output.txt','w')
+
 def forward_selected(data, response, remaining, prev=[]):
     """
         based upon algorithm found at: https://planspace.org/20150423-forward_selection_with_statsmodels/
@@ -34,6 +36,7 @@ def forward_selected(data, response, remaining, prev=[]):
             else:
                 sel_model = sm.ols(sel, data).fit()
                 sel_model.save(s_file)
+        print("testing base: {}".format(sel), file = file)
         print("testing base: {}".format(sel))
         if previous == "1" or previous == "":
             previous = ""
@@ -49,8 +52,10 @@ def forward_selected(data, response, remaining, prev=[]):
             else:
                 model = sm.ols(formula, data).fit()
                 model.save(f_file)
+            print("testing addition: {}".format(formula), file = file)
             print("testing addition: {}".format(formula))
             prf = sma.stats.anova_lm(sel_model,model)['Pr(>F)'].loc[1]
+            print("testing addition: {} result: {}".format(formula, prf), file = file)
             print("testing addition: {} result: {}".format(formula, prf))
             scores_with_candidates.append((prf, candidate, model, formula))
         scores_with_candidates.sort()
@@ -67,12 +72,17 @@ def forward_selected(data, response, remaining, prev=[]):
     return model, formula, selected
 
 
-d = pd.read_csv("DA_Clean NCSA Reserves_4.14.18-FINAL.csv")
+d = pd.read_csv("cleaned.csv")
 d['ReleaseMonth'] = d['ReleaseMonth'].astype('str')
 d['ReleaseYear'] = d['ReleaseYear'].astype('str')
 
-result, f, selected = forward_selected(d,'ReservesLevel',['Platform', 'Region', 'ReleaseMonth', 'Channel', 'Edition', 'RelativeWeek'])
+result, f, selected = forward_selected(d,'ReservesLevel',['Channel','Edition','Platform','ReleaseYear','ReleaseMonth','RelativeWeek','GameType'])
 
+print(f, file = file)
+print(selected, file = file)
+print(result.summary(), file = file)
 print(f)
 print(selected)
 print(result.summary())
+file.flush()
+file.close()

@@ -26,7 +26,7 @@ def test_interactions(d, outcome, predictors,col_dt = None):
     return no_inter, inter
 
 
-df = clean(pd.read_csv("DA_Clean NCSA Reserves_4.14.18-FINAL.csv"))
+df = pd.read_csv("cleaned.csv")
 # print(df['Edition'].unique())
 # print(df['Installment'].unique())
 # print(df['Channel'].unique())
@@ -41,3 +41,7 @@ no_inter, inter = test_interactions(df, 'ReservesLevel', ['Edition', 'Channel', 
 
 f = open('interactions.txt','w')
 print(inter.summary(), file=f)
+f.close()
+f = open('no_interactions.txt','w')
+print(no_inter.summary(), file=f)
+f.close()
