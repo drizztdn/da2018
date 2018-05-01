@@ -1,0 +1,21 @@
+2018-04-30 22:59:28.226336
+validating forward selected : ReservesLevel ~ ReleaseYear+Platform+ReleaseMonth+Edition+RelativeWeek
+processing loocv
+loocv MSE=  1570373334.4144492
+2018-05-01 00:17:05.577589
+processing kFold: 5
+k-Fold 5 MSE= 1570551355.6253133
+2018-05-01 00:17:07.362906
+processing kFold: 10
+k-Fold 10 MSE= 1567664918.2422626
+2018-05-01 00:17:10.512830
+validating backward selected : ReservesLevel ~ Channel+Edition+Platform+ReleaseMonth+RelativeWeek
+processing loocv
+loocv MSE=  1788847393.708212
+2018-05-01 01:11:23.426098
+processing kFold: 5
+k-Fold 5 MSE= 1789906913.0659866
+2018-05-01 01:11:24.952202
+processing kFold: 10
+k-Fold 10 MSE= 1787715107.1217766
+2018-05-01 01:11:28.410846
