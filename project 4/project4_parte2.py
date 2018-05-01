@@ -5,7 +5,7 @@ import statsmodels.api as sma
 import statsmodels.sandbox.tools.cross_val as cross_val
 import datetime
 
-file = open('validation.txt','w')
+file = open('validation2.txt','w')
 
 print(datetime.datetime.now(), file=file)
 print(datetime.datetime.now())
@@ -14,7 +14,7 @@ d = d.reindex(np.random.permutation(d.index))
 d['ReleaseMonth'] = d['ReleaseMonth'].astype('str')
 d['ReleaseYear'] = d['ReleaseYear'].astype('str')
 
-formula = "ReservesLevel ~ ReleaseYear*Platform*ReleaseMonth*Edition*RelativeWeek"
+formula = "ReservesLevel ~ ReleaseYear+Platform+ReleaseMonth+Edition+RelativeWeek"
 output = "ReservesLevel"
 
 # model = sma.load('best_model.pickle')
@@ -70,7 +70,7 @@ kFold(d, formula, output, 10)
 print(datetime.datetime.now(), file=file)
 print(datetime.datetime.now())
 
-formula = 'ReservesLevel ~ Channel*Edition*Platform*ReleaseMonth*RelativeWeek'
+formula = 'ReservesLevel ~ Channel+Edition+Platform+ReleaseMonth+RelativeWeek'
 print("validating backward selected : {}".format(formula), file=file)
 print("validating backward selected: {}".format(formula))
 loocv(d, formula, output)

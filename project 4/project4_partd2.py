@@ -3,7 +3,7 @@ import statsmodels.formula.api as sm
 import statsmodels.api as sma
 from pathlib import Path
 
-file = open('backwards_output.txt','w')
+file = open('backwards_output2.txt','w')
 
 def backward_selected(data, response, remaining, prev=[]):
     """
@@ -17,20 +17,20 @@ def backward_selected(data, response, remaining, prev=[]):
     starting_formula = "{response} ~ {selected}"
 
     for i in range(0,len(prev)):
-        prv.append("*".join(prev[i]))
+        prv.append("+".join(prev[i]))
     if len(prv) > 0:
-        previous = "*".join(prv)
+        previous = "+".join(prv)
         if len(previous) > 1:
-            previous = previous + '*'
+            previous = previous + '+'
     else:
         previous = '1'
 
     while remain and current_score == best_new_score:
         current_score = 0.05
         scores_with_candidates = []
-        sel = starting_formula.format(response=response, selected='*'.join(remain), prev=previous)
+        sel = starting_formula.format(response=response, selected='+'.join(remain), prev=previous)
         s_file = "b_models/" + sel.replace(response + " ~ ", "") + '.pickle'
-        s_file = s_file.replace('*', '')
+        s_file = s_file.replace('+', '')
         if Path(s_file).exists():
             sel_model = sma.load(s_file)
         else:
@@ -44,11 +44,11 @@ def backward_selected(data, response, remaining, prev=[]):
         for candidate in remain:
             s = remain[:]
             s.remove(candidate)
-            if len(s) == 0 and previous.endswith('*'):
+            if len(s) == 0 and previous.endswith('+'):
                 previous = previous[:-1]
-            formula = starting_formula.format(response=response, selected='*'.join(s), prev=previous)
+            formula = starting_formula.format(response=response, selected='+'.join(s), prev=previous)
             f_file = "b_models/" + formula.replace(response + " ~ ", "") + '.pickle'
-            f_file = f_file.replace('*', '')
+            f_file = f_file.replace('+', '')
             if Path(f_file).exists():
                 model = sma.load(f_file)
             else:
@@ -66,13 +66,13 @@ def backward_selected(data, response, remaining, prev=[]):
             remain.remove(best_candidate)
             selected.append(best_candidate)
             current_score = best_new_score
-    if previous[:1] != "*" and len(selected) == 0:
+    if previous[:1] != "+" and len(selected) == 0:
         previous = previous[:-1]
     for s in selected:
         remaining.remove(s)
-    formula = starting_formula.format(response=response, selected='*'.join(remaining), prev=previous)
+    formula = starting_formula.format(response=response, selected='+'.join(remaining), prev=previous)
     model = sm.ols(formula, data).fit()
-    model.save('best_model_backward.pickle')
+    model.save('best_model_backward2.pickle')
     return model, formula, remaining
 
 
