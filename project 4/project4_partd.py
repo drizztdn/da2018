@@ -39,6 +39,7 @@ def backward_selected(data, response, remaining, prev=[]):
             else:
                 sel_model = sm.ols(sel, data).fit()
                 sel_model.save(s_file)
+        print("testing base: {}".format(sel), file = file)
         print("testing base: {}".format(sel))
         for candidate in remain:
             s = remain[:]
@@ -53,8 +54,10 @@ def backward_selected(data, response, remaining, prev=[]):
             else:
                 model = sm.ols(formula, data).fit()
                 model.save(f_file)
+            print("testing removal: {}".format(formula), file = file)
             print("testing removal: {}".format(formula))
             prf = sma.stats.anova_lm(model,sel_model)['Pr(>F)'].loc[1]
+            print("testing removal: {} result: {}".format(formula, prf), file = file)
             print("testing removal: {} result: {}".format(formula, prf))
             scores_with_candidates.append((prf, candidate, model, formula))
         scores_with_candidates.sort()
@@ -77,7 +80,14 @@ d = pd.read_csv("cleaned.csv")
 d['ReleaseMonth'] = d['ReleaseMonth'].astype('str')
 d['ReleaseYear'] = d['ReleaseYear'].astype('str')
 
-result, f, selected = backward_selected(d,'ReservesLevel',['Channel','Edition','Platform','ReleaseYear','ReleaseMonth','RelativeWeek','GameType'])
+result, f, selected = backward_selected(d,'ReservesLevel',['Channel','Edition','Platform','ReleaseYear','ReleaseMonth','RelativeWeek'])
+
+print(f, file = file)
+print(selected, file = file)
+print(result.summary(), file = file)
+
+file.flush()
+file.close()
 
 print(f)
 print(selected)

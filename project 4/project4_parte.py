@@ -8,6 +8,7 @@ import datetime
 file = open('validation.txt','w')
 
 print(datetime.datetime.now(), file=file)
+print(datetime.datetime.now())
 d = pd.read_csv("cleaned.csv")
 d = d.reindex(np.random.permutation(d.index))
 d['ReleaseMonth'] = d['ReleaseMonth'].astype('str')
@@ -68,3 +69,5 @@ print(datetime.datetime.now())
 kFold(d, formula, output, 10)
 print(datetime.datetime.now(), file=file)
 print(datetime.datetime.now())
+file.flush()
+file.close()
