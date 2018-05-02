@@ -31,4 +31,9 @@ consolidate_values(d, 'Platform', 'Wii U', 'Nintendo')
 consolidate_values(d, 'Platform', '3DS', 'Nintendo')
 consolidate_values(d, 'Platform', 'Switch', 'Nintendo')
 
+
+consolidate_values(d, 'Edition', 'Deluxe', 'Standard')
+consolidate_values(d, 'Edition', 'Collector', 'Standard')
+consolidate_values(d, 'Edition', 'Gold', 'Standard')
+
 d.to_csv('cleaned.csv')
