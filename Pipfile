@@ -11,7 +11,7 @@ pandas = "*"
 matplotlib = "*"
 statsmodels = "*"
 #scipy = "*"
-#scikit-learn = "*"
+scikit-learn = "*"
 appjar = "*"
 
 [requires]
