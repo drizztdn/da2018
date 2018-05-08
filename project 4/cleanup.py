@@ -36,4 +36,12 @@ consolidate_values(d, 'Edition', 'Deluxe', 'Standard')
 consolidate_values(d, 'Edition', 'Collector', 'Standard')
 consolidate_values(d, 'Edition', 'Gold', 'Standard')
 
+d['FinalPrice'] = '59.99'
+
+d['FinalPrice'][d['Installment'] == 'Annie'] = '59.99'
+d['FinalPrice'][d['Installment'] == 'RPG L'] = '19.99'
+d['FinalPrice'][d['Installment'] == 'RPG E'] = '39.99'
+d['FinalPrice'][d['Installment'] == 'RPG 3'] = '39.99'
+
+
 d.to_csv('cleaned.csv')

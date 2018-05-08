@@ -76,7 +76,7 @@ d = pd.read_csv("cleaned.csv")
 d['ReleaseMonth'] = d['ReleaseMonth'].astype('str')
 d['ReleaseYear'] = d['ReleaseYear'].astype('str')
 
-result, f, selected = forward_selected(d,'ReservesLevel',['Channel','Edition','Platform','ReleaseYear','ReleaseMonth','RelativeWeek','GameType'])
+result, f, selected = forward_selected(d,'ReservesLevel',['Channel','Platform','ReleaseYear','ReleaseMonth','RelativeWeek','GameType'])
 
 print(f, file = file)
 print(selected, file = file)

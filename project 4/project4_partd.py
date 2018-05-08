@@ -80,7 +80,7 @@ d = pd.read_csv("cleaned.csv")
 d['ReleaseMonth'] = d['ReleaseMonth'].astype('str')
 d['ReleaseYear'] = d['ReleaseYear'].astype('str')
 
-result, f, selected = backward_selected(d,'ReservesLevel',['Channel','Edition','Platform','ReleaseYear','ReleaseMonth','RelativeWeek'])
+result, f, selected = backward_selected(d,'ReservesLevel',['Channel','Platform','ReleaseYear','ReleaseMonth','RelativeWeek'])
 
 print(f, file = file)
 print(selected, file = file)
