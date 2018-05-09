@@ -1,16 +1,23 @@
 import statsmodels.api as sma
 import pandas as pd
+import matplotlib
+import matplotlib.pyplot as plt
 
-df = pd.read_csv("../project 4/cleaned.csv")
-model = sma.load('best_model.pickle')
+df = pd.read_csv("fixed.csv")
+
+cas = df[df['GameType'] == 'Casual']
+noncas = df[df['GameType'] == 'NonCasual']
 
 
-plt.scatter(df2['TEMP'],df2['DEWP'],label="data")
-plt.scatter(smpl["TEMP"],smpl["DEWP"], color="purple",label="samples")
-plt.scatter(y2,smpl["DEWP"], color="red",label = "predicted")
-# plt.plot(model.fittedvalues, df2['DEWP'],label="fitted", color="black")
-plt.legend()
-plt.xlabel('weeks')
-plt.ylabel('reserves')
-plt.savefig('partA.png')
+plt.scatter(cas['RelativeWeek'],cas['ReservesLevel'],label="data")
+plt.ylabel("Reserves")
+plt.xlabel("Relative Week")
+plt.title("Casual Games")
+plt.show()
+plt.clf()
+
+plt.scatter(noncas['RelativeWeek'],noncas['ReservesLevel'],label="data")
+plt.ylabel("Reserves")
+plt.xlabel("Relative Week")
+plt.title("Non-Casual Games")
 plt.show()

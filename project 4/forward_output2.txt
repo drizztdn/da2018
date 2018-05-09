@@ -1,107 +1,83 @@
 testing base: ReservesLevel ~ 1
 testing addition: ReservesLevel ~ Channel
-testing addition: ReservesLevel ~ Channel result: 4.4403870153067654e-46
-testing addition: ReservesLevel ~ Edition
-testing addition: ReservesLevel ~ Edition result: 1.314797580893992e-50
+testing addition: ReservesLevel ~ Channel result: 1.9216759251776108e-21
 testing addition: ReservesLevel ~ Platform
-testing addition: ReservesLevel ~ Platform result: 1.4132292834097371e-58
+testing addition: ReservesLevel ~ Platform result: 6.201742851593754e-48
 testing addition: ReservesLevel ~ ReleaseYear
-testing addition: ReservesLevel ~ ReleaseYear result: 5.342640039370357e-237
+testing addition: ReservesLevel ~ ReleaseYear result: 1.575510007035117e-138
 testing addition: ReservesLevel ~ ReleaseMonth
-testing addition: ReservesLevel ~ ReleaseMonth result: 4.449254872714984e-45
+testing addition: ReservesLevel ~ ReleaseMonth result: 2.4579324888884502e-42
 testing addition: ReservesLevel ~ RelativeWeek
-testing addition: ReservesLevel ~ RelativeWeek result: 1.185074452484286e-22
+testing addition: ReservesLevel ~ RelativeWeek result: 1.1276707352186773e-21
 testing addition: ReservesLevel ~ GameType
-testing addition: ReservesLevel ~ GameType result: 1.811026492188098e-21
+testing addition: ReservesLevel ~ GameType result: 4.0464672923404886e-25
 testing base: ReservesLevel ~ ReleaseYear
 testing addition: ReservesLevel ~ ReleaseYear+Channel
-testing addition: ReservesLevel ~ ReleaseYear+Channel result: 4.607008427176465e-35
-testing addition: ReservesLevel ~ ReleaseYear+Edition
-testing addition: ReservesLevel ~ ReleaseYear+Edition result: 9.961522395644007e-55
+testing addition: ReservesLevel ~ ReleaseYear+Channel result: 4.4473300728038783e-13
 testing addition: ReservesLevel ~ ReleaseYear+Platform
-testing addition: ReservesLevel ~ ReleaseYear+Platform result: 0.0
+testing addition: ReservesLevel ~ ReleaseYear+Platform result: 5.7e-322
 testing addition: ReservesLevel ~ ReleaseYear+ReleaseMonth
 testing addition: ReservesLevel ~ ReleaseYear+ReleaseMonth result: 0.0
 testing addition: ReservesLevel ~ ReleaseYear+RelativeWeek
-testing addition: ReservesLevel ~ ReleaseYear+RelativeWeek result: 1.7591586048236675e-93
+testing addition: ReservesLevel ~ ReleaseYear+RelativeWeek result: 2.7880783233433744e-82
 testing addition: ReservesLevel ~ ReleaseYear+GameType
-testing addition: ReservesLevel ~ ReleaseYear+GameType result: 2.488004488092759e-13
-testing base: ReservesLevel ~ ReleaseYear+Platform
-testing addition: ReservesLevel ~ ReleaseYear+Platform+Channel
-testing addition: ReservesLevel ~ ReleaseYear+Platform+Channel result: 5.6233366838412405e-18
-testing addition: ReservesLevel ~ ReleaseYear+Platform+Edition
-testing addition: ReservesLevel ~ ReleaseYear+Platform+Edition result: 2.2316360954491503e-190
-testing addition: ReservesLevel ~ ReleaseYear+Platform+ReleaseMonth
-testing addition: ReservesLevel ~ ReleaseYear+Platform+ReleaseMonth result: 0.0
-testing addition: ReservesLevel ~ ReleaseYear+Platform+RelativeWeek
-testing addition: ReservesLevel ~ ReleaseYear+Platform+RelativeWeek result: 2.5197868062889006e-237
-testing addition: ReservesLevel ~ ReleaseYear+Platform+GameType
-testing addition: ReservesLevel ~ ReleaseYear+Platform+GameType result: 1.2863007667487111e-20
-testing base: ReservesLevel ~ ReleaseYear+Platform+ReleaseMonth
-testing addition: ReservesLevel ~ ReleaseYear+Platform+ReleaseMonth+Channel
-testing addition: ReservesLevel ~ ReleaseYear+Platform+ReleaseMonth+Channel result: 2.2158286202470265e-40
-testing addition: ReservesLevel ~ ReleaseYear+Platform+ReleaseMonth+Edition
-testing addition: ReservesLevel ~ ReleaseYear+Platform+ReleaseMonth+Edition result: 0.0
-testing addition: ReservesLevel ~ ReleaseYear+Platform+ReleaseMonth+RelativeWeek
-testing addition: ReservesLevel ~ ReleaseYear+Platform+ReleaseMonth+RelativeWeek result: 1.0672242269440712e-58
-testing addition: ReservesLevel ~ ReleaseYear+Platform+ReleaseMonth+GameType
-testing addition: ReservesLevel ~ ReleaseYear+Platform+ReleaseMonth+GameType result: 3.1342553673173493e-16
-testing base: ReservesLevel ~ ReleaseYear+Platform+ReleaseMonth+Edition
-testing addition: ReservesLevel ~ ReleaseYear+Platform+ReleaseMonth+Edition+Channel
-testing addition: ReservesLevel ~ ReleaseYear+Platform+ReleaseMonth+Edition+Channel result: 3.95911825353978e-56
-testing addition: ReservesLevel ~ ReleaseYear+Platform+ReleaseMonth+Edition+RelativeWeek
-testing addition: ReservesLevel ~ ReleaseYear+Platform+ReleaseMonth+Edition+RelativeWeek result: 0.0
-testing addition: ReservesLevel ~ ReleaseYear+Platform+ReleaseMonth+Edition+GameType
-testing addition: ReservesLevel ~ ReleaseYear+Platform+ReleaseMonth+Edition+GameType result: 2.138127858018987e-50
-testing base: ReservesLevel ~ ReleaseYear+Platform+ReleaseMonth+Edition+RelativeWeek
-testing addition: ReservesLevel ~ ReleaseYear+Platform+ReleaseMonth+Edition+RelativeWeek+Channel
-testing addition: ReservesLevel ~ ReleaseYear+Platform+ReleaseMonth+Edition+RelativeWeek+Channel result: nan
-testing addition: ReservesLevel ~ ReleaseYear+Platform+ReleaseMonth+Edition+RelativeWeek+GameType
-testing addition: ReservesLevel ~ ReleaseYear+Platform+ReleaseMonth+Edition+RelativeWeek+GameType result: nan
-ReservesLevel ~ ReleaseYear+Platform+ReleaseMonth+Edition+RelativeWeek
-['ReleaseYear', 'Platform', 'ReleaseMonth', 'Edition', 'RelativeWeek']
+testing addition: ReservesLevel ~ ReleaseYear+GameType result: 3.6140692848198034e-11
+testing base: ReservesLevel ~ ReleaseYear+ReleaseMonth
+testing addition: ReservesLevel ~ ReleaseYear+ReleaseMonth+Channel
+testing addition: ReservesLevel ~ ReleaseYear+ReleaseMonth+Channel result: 8.218383870000947e-39
+testing addition: ReservesLevel ~ ReleaseYear+ReleaseMonth+Platform
+testing addition: ReservesLevel ~ ReleaseYear+ReleaseMonth+Platform result: 0.0
+testing addition: ReservesLevel ~ ReleaseYear+ReleaseMonth+RelativeWeek
+testing addition: ReservesLevel ~ ReleaseYear+ReleaseMonth+RelativeWeek result: 3.287143073918267e-75
+testing addition: ReservesLevel ~ ReleaseYear+ReleaseMonth+GameType
+testing addition: ReservesLevel ~ ReleaseYear+ReleaseMonth+GameType result: 7.648892895433008e-07
+testing base: ReservesLevel ~ ReleaseYear+ReleaseMonth+Platform
+testing addition: ReservesLevel ~ ReleaseYear+ReleaseMonth+Platform+Channel
+testing addition: ReservesLevel ~ ReleaseYear+ReleaseMonth+Platform+Channel result: 1.0
+testing addition: ReservesLevel ~ ReleaseYear+ReleaseMonth+Platform+RelativeWeek
+testing addition: ReservesLevel ~ ReleaseYear+ReleaseMonth+Platform+RelativeWeek result: 1.0
+testing addition: ReservesLevel ~ ReleaseYear+ReleaseMonth+Platform+GameType
+testing addition: ReservesLevel ~ ReleaseYear+ReleaseMonth+Platform+GameType result: nan
+ReservesLevel ~ ReleaseYear+ReleaseMonth+Platform
+['ReleaseYear', 'ReleaseMonth', 'Platform']
                             OLS Regression Results                            
 ==============================================================================
-Dep. Variable:          ReservesLevel   R-squared:                       0.236
-Model:                            OLS   Adj. R-squared:                  0.234
-Method:                 Least Squares   F-statistic:                     136.3
-Date:                Mon, 30 Apr 2018   Prob (F-statistic):               0.00
-Time:                        22:59:03   Log-Likelihood:            -1.1692e+05
-No. Observations:                9741   AIC:                         2.339e+05
-Df Residuals:                    9718   BIC:                         2.341e+05
-Df Model:                          22                                         
+Dep. Variable:          ReservesLevel   R-squared:                       0.252
+Model:                            OLS   Adj. R-squared:                  0.249
+Method:                 Least Squares   F-statistic:                     99.91
+Date:                Wed, 02 May 2018   Prob (F-statistic):          2.35e-319
+Time:                        16:21:36   Log-Likelihood:                -65876.
+No. Observations:                5369   AIC:                         1.318e+05
+Df Residuals:                    5350   BIC:                         1.319e+05
+Df Model:                          18                                         
 Covariance Type:            nonrobust                                         
 =======================================================================================
                           coef    std err          t      P>|t|      [0.025      0.975]
 ---------------------------------------------------------------------------------------
-Intercept            5.613e+04   3165.761     17.730      0.000    4.99e+04    6.23e+04
-ReleaseYear[T.2010] -1.395e+04   3329.693     -4.190      0.000   -2.05e+04   -7425.137
-ReleaseYear[T.2011] -5.341e+04   2282.693    -23.399      0.000   -5.79e+04   -4.89e+04
-ReleaseYear[T.2012]  -6.11e+04   2271.783    -26.893      0.000   -6.55e+04   -5.66e+04
-ReleaseYear[T.2013] -6.628e+04   2213.073    -29.948      0.000   -7.06e+04   -6.19e+04
-ReleaseYear[T.2014] -7.791e+04   2192.447    -35.534      0.000   -8.22e+04   -7.36e+04
-ReleaseYear[T.2015] -7.147e+04   2717.682    -26.298      0.000   -7.68e+04   -6.61e+04
-Platform[T.PC]       1.813e+04   2392.428      7.578      0.000    1.34e+04    2.28e+04
-Platform[T.PS]       2.991e+04   2345.966     12.752      0.000    2.53e+04    3.45e+04
-Platform[T.Wii]     -9451.8902   4443.382     -2.127      0.033   -1.82e+04    -741.937
-Platform[T.XBOX]     3.678e+04   2359.686     15.586      0.000    3.22e+04    4.14e+04
-ReleaseMonth[T.11]  -3.278e+04   1608.133    -20.384      0.000   -3.59e+04   -2.96e+04
-ReleaseMonth[T.12]  -3.996e+04   1661.567    -24.052      0.000   -4.32e+04   -3.67e+04
-ReleaseMonth[T.2]   -1.623e+04   1598.067    -10.157      0.000   -1.94e+04   -1.31e+04
-ReleaseMonth[T.3]    -1.27e+04   1324.124     -9.593      0.000   -1.53e+04   -1.01e+04
-ReleaseMonth[T.4]   -3.811e+04   5365.782     -7.102      0.000   -4.86e+04   -2.76e+04
-ReleaseMonth[T.5]   -4160.6245   2287.729     -1.819      0.069   -8645.049     323.800
-ReleaseMonth[T.8]   -1.833e+04   4268.139     -4.295      0.000   -2.67e+04   -9965.363
-ReleaseMonth[T.9]   -2.134e+04   4582.103     -4.658      0.000   -3.03e+04   -1.24e+04
-Edition[T.Deluxe]    1.183e+04   1791.566      6.602      0.000    8315.283    1.53e+04
-Edition[T.Gold]      1.388e+04   1412.286      9.830      0.000    1.11e+04    1.67e+04
-Edition[T.Standard]  2.125e+04   1226.198     17.330      0.000    1.88e+04    2.37e+04
-RelativeWeek         -296.0045     18.610    -15.905      0.000    -332.485    -259.524
+Intercept             8.17e+04   4177.731     19.557      0.000    7.35e+04    8.99e+04
+ReleaseYear[T.2010] -4617.7334   5054.335     -0.914      0.361   -1.45e+04    5290.823
+ReleaseYear[T.2011] -6.044e+04   3255.881    -18.564      0.000   -6.68e+04   -5.41e+04
+ReleaseYear[T.2012] -6.804e+04   3289.332    -20.685      0.000   -7.45e+04   -6.16e+04
+ReleaseYear[T.2013] -7.975e+04   3286.709    -24.264      0.000   -8.62e+04   -7.33e+04
+ReleaseYear[T.2014] -9.691e+04   3230.444    -29.998      0.000   -1.03e+05   -9.06e+04
+ReleaseYear[T.2015] -7.972e+04   4827.104    -16.515      0.000   -8.92e+04   -7.03e+04
+ReleaseMonth[T.11]  -4.245e+04   2627.522    -16.158      0.000   -4.76e+04   -3.73e+04
+ReleaseMonth[T.12]  -5.529e+04   2634.655    -20.987      0.000   -6.05e+04   -5.01e+04
+ReleaseMonth[T.2]   -2.552e+04   3073.945     -8.304      0.000   -3.16e+04   -1.95e+04
+ReleaseMonth[T.3]   -2.235e+04   2379.483     -9.391      0.000    -2.7e+04   -1.77e+04
+ReleaseMonth[T.4]   -3.686e+04   7047.783     -5.231      0.000   -5.07e+04    -2.3e+04
+ReleaseMonth[T.5]   -2651.1695   3565.827     -0.743      0.457   -9641.644    4339.305
+ReleaseMonth[T.8]   -2.385e+04   5980.279     -3.988      0.000   -3.56e+04   -1.21e+04
+ReleaseMonth[T.9]   -2.637e+04   7512.515     -3.509      0.000   -4.11e+04   -1.16e+04
+Platform[T.PC]        1.71e+04   3500.255      4.886      0.000    1.02e+04     2.4e+04
+Platform[T.PS]       3.694e+04   3396.811     10.876      0.000    3.03e+04    4.36e+04
+Platform[T.Wii]     -4805.4283   5977.169     -0.804      0.421   -1.65e+04    6912.259
+Platform[T.XBOX]     4.769e+04   3425.689     13.921      0.000     4.1e+04    5.44e+04
 ==============================================================================
-Omnibus:                    12497.318   Durbin-Watson:                   0.154
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):          2835073.988
-Skew:                           7.049   Prob(JB):                         0.00
-Kurtosis:                      85.379   Cond. No.                         481.
+Omnibus:                     5525.678   Durbin-Watson:                   0.169
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):           446143.435
+Skew:                           5.020   Prob(JB):                         0.00
+Kurtosis:                      46.514   Cond. No.                         15.0
 ==============================================================================
 
 Warnings:

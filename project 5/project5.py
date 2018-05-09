@@ -7,13 +7,13 @@ import seaborn as sns; sns.set() # for plot styling
 from sklearn import tree, linear_model, svm
 from sklearn.preprocessing import LabelEncoder
 
-all_columns = ['Region', 'Channel', 'Platform', 'GameType', 'ReserveType','ReleaseYear', 'ReleaseMonth',
+all_columns = ['Channel', 'Platform', 'GameType', 'ReserveType','ReleaseYear', 'ReleaseMonth',
          'RelativeWeek', 'Version', 'FinalPrice']
 
-label_cols = ['Region', 'Channel', 'Platform', 'GameType', 'ReserveType','ReleaseYear', 'ReleaseMonth']
+label_cols = ['Channel', 'Platform', 'GameType', 'ReserveType','ReleaseYear', 'ReleaseMonth']
 encoders = {}
 
-columns = [['Channel'],['Region'],['ReserveType'],['Platform'],['Version','Series Version'],
+columns = [['Channel'],['ReserveType'],['Platform'],['Version','Series Version'],
            ['ReleaseYear','Release Year'],['ReleaseMonth','Release Month'],['RelativeWeek','Relative Week'],
            ['FinalPrice','Final Price'],['GameType','Game Type']]
 
@@ -22,14 +22,16 @@ def train_encoders(df):
         encoders[c] = LabelEncoder().fit(df[c])
 
 def load_data():
-    df = pd.read_csv("DA_FinalData_5.3.csv")
+    df = pd.read_csv("fixed.csv")
+
     df['ReleaseMonth'] = df['ReleaseMonth'].astype('str')
     df['ReleaseYear'] = df['ReleaseYear'].astype('str')
+    df['RelativeWeek'] = df['RelativeWeek'].astype('int')
+    df['Version'] = df['Version'].astype('int')
+    df['ReservesLevel'] = df['ReservesLevel'].astype('int')
 
     train_encoders(df)
-
     y = df['ReservesLevel']
-
     X = pd.DataFrame(columns=all_columns)
 
     for col in X.columns:
@@ -37,7 +39,6 @@ def load_data():
             X[col] = encoders[col].transform(df[col])
         else:
             X[col] = df[col]
-
         X[col].astype(df[col].dtype)
 
     return df, X, y
@@ -49,10 +50,6 @@ clf = tree.DecisionTreeRegressor()
 model = clf.fit(X,y)
 
 print(model)
-
-columns = [['Channel'],['Region'],['ReserveType'],['Platform'],['Version','Series Version'],
-           ['ReleaseYear','Release Year'],['ReleaseMonth','Release Month'],['RelativeWeek','Relative Week'],
-           ['FinalPrice','Final Price'],['GameType','Game Type']]
 
 app = gui()
 app.addLabel("title", "Predict Reserves")
