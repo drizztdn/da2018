@@ -2,10 +2,12 @@ from appJar import gui
 import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.ticker as ticker
+from pathlib import Path
 import pandas as pd
 import seaborn as sns; sns.set() # for plot styling
 from sklearn import tree, linear_model, svm
 from sklearn.preprocessing import LabelEncoder
+from sklearn.externals import joblib
 
 all_columns = ['Channel', 'Platform', 'GameType', 'ReserveType','ReleaseYear', 'ReleaseMonth',
          'RelativeWeek', 'Version', 'FinalPrice']
@@ -45,9 +47,16 @@ def load_data():
 
 data, X, y = load_data()
 
+clf = None
+
+
 clf = tree.DecisionTreeRegressor()
 # clf = linear_model.ARDRegression()
-model = clf.fit(X,y)
+if Path('model.pickle').exists():
+    model = clf = joblib.load('model.pickle')
+else:
+    model = clf.fit(X,y)
+    joblib.dump(model,'model.pickle')
 
 print(model)
 
