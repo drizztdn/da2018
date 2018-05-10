@@ -46,7 +46,7 @@ def load_data():
 data, X, y = load_data()
 
 clf = tree.DecisionTreeRegressor()
-# clf = linear_model.Lasso()
+# clf = linear_model.ARDRegression()
 model = clf.fit(X,y)
 
 print(model)

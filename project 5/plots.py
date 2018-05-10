@@ -4,6 +4,9 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 df = pd.read_csv("fixed.csv")
+df['ReleaseMonth'] = df['ReleaseMonth'].astype('str')
+df['ReleaseYear'] = df['ReleaseYear'].astype('str')
+print(df.dtypes)
 
 cas = df[df['GameType'] == 'Casual']
 noncas = df[df['GameType'] == 'NonCasual']
